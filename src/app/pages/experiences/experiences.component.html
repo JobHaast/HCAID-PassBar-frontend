@@ -1,0 +1,122 @@
+<section class="absolute w-full h-full">
+  <div
+    class="absolute top-0 w-full h-full bg-gray-900"
+    style="
+      background-image: url(./assets/img/register_bg_2.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+    "
+  ></div>
+  <div class="container mx-auto px-4 h-full">
+    <div class="flex content-center items-center justify-center h-full">
+      <div class="w-full lg:w-8/12 px-4 fadeIn">
+        <div
+          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg"
+          [ngClass]="{ transition: this.state }"
+        >
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+              <div class="relative">
+                <img
+                  alt="profile picture"
+                  [src]="this.people[this.currentIndex].imagePath"
+                  class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                  style="max-width: 150px"
+                />
+              </div>
+            </div>
+            <div
+              class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center"
+            >
+              <div class="py-6 px-3 mt-32 sm:mt-0">
+                <a
+                  [href]="'mailto:' + this.people[this.currentIndex].email"
+                  class="bg-cyan-500 active:bg-cyan-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                  type="button"
+                  style="transition: all 0.15s ease 0s"
+                >
+                  Connect
+                </a>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-1">
+              <ul class="flex flex-col lg:flex-row list-none lg:ml-auto mt-5">
+                <li class="flex items-center">
+                  <a
+                    class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    [href]="this.people[this.currentIndex].facebook"
+                    ><i
+                      class="lg:text-cyan-500 text-gray-900 fab fa-facebook text-lg leading-lg"
+                    ></i
+                    ><span class="lg:hidden inline-block ml-2">Share</span></a
+                  >
+                </li>
+                <li class="flex items-center">
+                  <a
+                    class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    [href]="this.people[this.currentIndex].twitter"
+                    ><i
+                      class="lg:text-cyan-500 text-gray-500 fab fa-twitter text-lg leading-lg"
+                    ></i
+                    ><span class="lg:hidden inline-block ml-2">Tweet</span></a
+                  >
+                </li>
+                <li class="flex items-center">
+                  <a
+                    class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+                    [href]="this.people[this.currentIndex].instagram"
+                    ><i
+                      class="lg:text-cyan-500 text-gray-500 fab fa-instagram text-lg leading-lg"
+                    ></i
+                    ><span class="lg:hidden inline-block ml-2">Insta</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <h3
+              class="text-4xl font-semibold leading-normal mb-2 text-gray-800"
+            >
+              {{ this.people[this.currentIndex].fullName }}
+            </h3>
+            <div
+              class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
+            >
+              <i class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>
+              {{ this.people[this.currentIndex].location }}
+            </div>
+            <div class="mb-2 text-gray-700 mt-10">
+              <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
+              >{{ this.people[this.currentIndex].job }}
+            </div>
+            <div class="mb-2 text-gray-700">
+              <i class="fas fa-university mr-2 text-lg text-gray-500"></i
+              >{{ this.people[this.currentIndex].education }}
+            </div>
+          </div>
+          <div class="mt-10 py-10 border-t border-gray-300 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full lg:w-9/12 px-4">
+                <p class="mb-4 text-base leading-relaxed text-gray-800">
+                  {{ this.people[this.currentIndex].description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="animate-bounce text-cyan-500 flex flex-wrap justify-center pt-5"
+        >
+          <button
+            class="rounded-full bg-white w-10 h-10"
+            (click)="nextPerson()"
+            [disabled]="this.state"
+          >
+            <fa-icon [icon]="this.faArrowDown"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

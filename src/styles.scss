@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fadeIn {
+  animation: 0.75s ease-out 0s 1 slideInFromBottom;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.transition {
+  animation: 1.5s ease-out 0s 1 slideOutFromTop;
+}
+
+@keyframes slideOutFromTop {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    opacity: 0;
+    transform: translate3d(0, -1rem, 0);
+  }
+  66% {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

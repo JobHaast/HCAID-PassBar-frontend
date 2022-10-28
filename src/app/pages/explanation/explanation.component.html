@@ -1,0 +1,51 @@
+<section class="absolute w-full h-full">
+  <div
+    class="absolute top-0 w-full h-full bg-gray-900"
+    style="
+      background-image: url(./assets/img/register_bg_2.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+    "
+  ></div>
+  <div class="container mx-auto px-4 h-full">
+    <div class="flex content-center items-center justify-center h-full">
+      <div class="w-full lg:w-6/12 px-4 fadeIn">
+        <div
+          class="relative flex flex-col min-w-0 break-words w-full mb-6"
+          [ngClass]="{ transition: this.state }"
+        >
+          <div class="rounded-t mb-0 px-6 py-6">
+            <div class="text-center mb-3 text-white">
+              <h2
+                class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+              >
+                <span class="block text-cyan-500">{{
+                  this.information[this.currentIndex].header
+                }}</span>
+              </h2>
+            </div>
+            <hr class="mt-6 border-b-1 border-gray-400" />
+          </div>
+          <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <div class="btn-wrapper text-center">
+              <p class="text-white text-lg">
+                {{ this.information[this.currentIndex].description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="animate-bounce text-cyan-500 flex flex-wrap justify-center pt-5"
+        >
+          <button
+            class="rounded-full bg-white w-10 h-10"
+            (click)="next()"
+            [disabled]="this.state"
+          >
+            <fa-icon [icon]="this.faArrowDown"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
