@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ExperiencesComponent } from './pages/experiences/experiences.component';
 import { PredictComponent } from './pages/predict/predict.component';
 import { ExplanationComponent } from './pages/explanation/explanation.component';
-import { PrivacyComponent } from './pages/privacy/privacy.component';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'experiences', component: ExperiencesComponent },
   { path: 'predict', component: PredictComponent },
   { path: 'explanation', component: ExplanationComponent },
-  { path: 'privacy', component: PrivacyComponent },
+  { path: 'feedback', component: FeedbackComponent },
 ];
 
 @NgModule({

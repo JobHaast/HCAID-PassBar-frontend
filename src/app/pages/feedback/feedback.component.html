@@ -1,0 +1,167 @@
+<section class="absolute w-full h-full">
+  <div
+    class="absolute top-0 w-full h-full bg-gray-900"
+    style="
+      background-image: url(./assets/img/register_bg_2.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+    "
+  ></div>
+  <div class="container mx-auto px-4 h-full">
+    <div class="flex content-center items-center justify-center h-full">
+      <div class="w-full lg:w-7/12 px-4 fadeIn">
+        <div
+          class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
+        >
+          <ng-container
+            *ngIf="feedbackSent === false; then form; else result"
+          ></ng-container>
+          <ng-template #form>
+            <div class="rounded-t mb-0 px-6 py-6">
+              <div class="text-center mb-3">
+                <h6 class="text-gray-600 text-sm font-bold">Feedback</h6>
+              </div>
+              <hr class="mt-6 border-b-1 border-gray-400" />
+            </div>
+            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+              <form [formGroup]="feedbackForm" (submit)="sendFeedback()">
+                <div class="grid grid-cols-1">
+                  <div class="mb-3">
+                    <label
+                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                      for="grid-password"
+                      >What score would you give your prediction?<span
+                        class="text-orange-400 ml-1"
+                        >*</span
+                      ><app-tooltip
+                        description="The score you give is a value between 1 and 5"
+                        class="float-right"
+                      ></app-tooltip></label
+                    ><input
+                      formControlName="score"
+                      min="1"
+                      max="5"
+                      step="0.2"
+                      type="range"
+                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm w-full"
+                      style="transition: all 0.15s ease 0s"
+                    />
+                    <div
+                      class="grid grid-cols-3 w-full -mt-5 uppercase text-gray-700 text-xs font-bold"
+                    >
+                      <div class="float-right text-left mr-1">1</div>
+                      <div class="text-center mr-1">
+                        Current value:
+                        {{ this.feedbackForm.controls["score"].value }}
+                      </div>
+                      <div class="float-right text-right mr-1">5</div>
+                    </div>
+                  </div>
+                  <div class="mb-3 pl-1">
+                    <label
+                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                      for="grid-password"
+                      >Comments
+                      <div class="float-right">
+                        {{
+                          this.feedbackForm.controls["comments"].value
+                            ?.length || 0
+                        }}/255
+                      </div></label
+                    >
+
+                    <div class="mt-1">
+                      <textarea
+                        formControlName="comments"
+                        id="about"
+                        name="about"
+                        rows="3"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="Feel free to write here"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                <ng-container
+                  *ngIf="
+                    this.loading === false;
+                    then initialState;
+                    else showProcessing
+                  "
+                ></ng-container>
+                <div class="text-center mt-2">
+                  <ng-template #initialState>
+                    <button
+                      class="bg-gray-900 text-white active:bg-gray-700 disabled:bg-gray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      type="submit"
+                      style="transition: all 0.15s ease 0s"
+                      [disabled]="this.feedbackForm.invalid"
+                    >
+                      Send feedback
+                    </button>
+                  </ng-template>
+                  <ng-template #showProcessing
+                    ><button
+                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      type="submit"
+                      style="transition: all 0.15s ease 0s"
+                      [disabled]="true"
+                    >
+                      <div
+                        class="flex items-center justify-center center gap-2"
+                      >
+                        <span
+                          class="h-6 w-6 block rounded-full border-4 border-t-cyan-500 animate-spin"
+                        ></span>
+                        Processing
+                      </div>
+                    </button></ng-template
+                  >
+                </div>
+              </form>
+            </div>
+          </ng-template>
+          <ng-template #result>
+            <div class="rounded-t mb-0 px-6 py-6">
+              <div class="text-center mb-3">
+                <h6 class="text-gray-600 text-base font-bold">
+                  Thank you for your feedack!
+                </h6>
+              </div>
+              <hr class="mt-6 border-b-1 border-gray-400" />
+            </div>
+            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+              <fa-icon
+                [icon]="faCircleCheck"
+                class="flex items-center justify-center fa-5x pb-2"
+              ></fa-icon>
+              <div class="text-center">
+                We successfully recieved your feedback!
+              </div>
+              <div class="text-center mt-6 grid grid-cols-2">
+                <div class="pr-2">
+                  <button
+                    class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                    style="transition: all 0.15s ease 0s"
+                    routerLink="/predict"
+                  >
+                    Make another prediction
+                  </button>
+                </div>
+                <div class="pl-2">
+                  <button
+                    class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                    style="transition: all 0.15s ease 0s"
+                    routerLink="/experiences"
+                  >
+                    Read about other people's expriences
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

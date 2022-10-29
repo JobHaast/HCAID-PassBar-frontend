@@ -3,7 +3,7 @@ import {
   faPerson,
   faCheck,
   faFileLines,
-  faCircleInfo,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,9 +29,9 @@ export class NavbarComponent {
       title: 'Explanation',
     },
     {
-      icon: faCircleInfo,
-      link: '/privacy',
-      title: 'Privacy',
+      icon: faComment,
+      link: '/feedback',
+      title: 'Feedback',
     },
   ];
 

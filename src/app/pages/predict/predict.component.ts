@@ -6,7 +6,6 @@ import { PredictionOutput } from './predictionOutput.model';
 import {
   faCircleNotch,
   faArrowDown,
-  faInfo,
   faCircleInfo,
 } from '@fortawesome/free-solid-svg-icons';
 

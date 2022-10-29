@@ -13,8 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorDisplayComponent } from './components/error-display/error-display.component';
 import { ExplanationComponent } from './pages/explanation/explanation.component';
-import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { FeedbackComponent } from './pages/feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +26,8 @@ import { TooltipComponent } from './components/tooltip/tooltip.component';
     ExperiencesComponent,
     ErrorDisplayComponent,
     ExplanationComponent,
-    PrivacyComponent,
     TooltipComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,
