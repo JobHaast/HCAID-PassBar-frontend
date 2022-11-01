@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://passbar-hcaid-backend.herokuapp.com/',
+  baseUrl: 'https://job.hcaid.nl/api/',
 };

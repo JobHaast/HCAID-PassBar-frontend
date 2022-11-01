@@ -25,7 +25,7 @@ export class ExplanationComponent implements OnInit {
     {
       header: 'How is my data used?',
       description:
-        'This application uses your data to make a prediction on whether you will pass the bar. We will not store your data in any way.',
+        'This application uses your data to make a prediction on whether you will pass the bar. This data is not stored. The only data we store is the data you provide in the feedback from, given you have filled out this form as it is optional.',
     },
   ];
 

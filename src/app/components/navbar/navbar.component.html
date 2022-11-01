@@ -10,6 +10,7 @@
       <a
         routerLink="/home"
         class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
+        [routerLinkActive]="['selected']"
         >Pass the bar</a
       >
     </div>
@@ -22,10 +23,11 @@
           <a
             [routerLink]="menuItem.link"
             class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+            [routerLinkActive]="['selected']"
           >
             <fa-icon
               [icon]="menuItem.icon"
-              class="lg:text-gray-300 text-gray-500 text-lg leading-lg mr-2"
+              class="text-lg leading-lg mr-2"
             ></fa-icon>
             {{ menuItem.title }}</a
           >
