@@ -28,8 +28,11 @@
           </div>
           <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
             <div class="btn-wrapper text-center">
-              <p class="text-white text-lg">
-                {{ this.information[this.currentIndex].description }}
+              <p
+                class="text-white text-lg"
+                [innerHTML]="this.information[this.currentIndex].description"
+              >
+                <!-- {{ this.information[this.currentIndex].description }} -->
               </p>
             </div>
           </div>

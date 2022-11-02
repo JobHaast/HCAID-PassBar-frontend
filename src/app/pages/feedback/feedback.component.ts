@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'src/app/components/footer/footer.service';
 
 @Component({
   selector: 'app-feedback',
@@ -21,7 +22,9 @@ export class FeedbackComponent implements OnInit {
     comments: new FormControl(null, [Validators.maxLength(255)]),
   });
 
-  constructor() {}
+  constructor(private readonly footerService: FooterService) {
+    this.footerService.setFooterEnabled(false);
+  }
 
   ngOnInit(): void {}
 

@@ -8,6 +8,8 @@ import {
   faArrowDown,
   faCircleInfo,
 } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'src/app/components/footer/footer.service';
+import { ExperiencesService } from '../experiences/experiences.service';
 
 @Component({
   selector: 'app-predict',
@@ -17,6 +19,7 @@ import {
 export class PredictComponent implements OnInit {
   prediction?: PredictionOutput;
   loading: Boolean = false;
+  explanation: Boolean = false;
 
   faCircleNotch = faCircleNotch;
   faArrowDown = faArrowDown;
@@ -47,7 +50,19 @@ export class PredictComponent implements OnInit {
     grad: new FormControl(false),
   });
 
-  constructor(private predictService: PredictService) {}
+  personIndex: number = 0;
+
+  LOW_SCORE: number = 2;
+  MEDIUM_SCORE: number = 1;
+  HIGH_SCORE: number = 0;
+
+  constructor(
+    private predictService: PredictService,
+    private readonly footerService: FooterService,
+    private experiencesService: ExperiencesService
+  ) {
+    this.footerService.setFooterEnabled(false);
+  }
 
   ngOnInit(): void {}
 
@@ -57,11 +72,35 @@ export class PredictComponent implements OnInit {
       .predict(this.predictionForm.value as PredictionInput)
       .subscribe((res) => {
         this.prediction = res as PredictionOutput;
+        if (this.prediction.chanceOfPassing <= 40) {
+          this.personIndex = this.LOW_SCORE;
+        }
+        if (
+          this.prediction.chanceOfPassing > 40 &&
+          this.prediction.chanceOfPassing <= 60
+        ) {
+          this.personIndex = this.MEDIUM_SCORE;
+        }
+        if (this.prediction.chanceOfPassing > 60) {
+          this.personIndex = this.HIGH_SCORE;
+        }
       });
   }
 
   resetOutput(): void {
     this.prediction = undefined;
     this.loading = false;
+  }
+
+  setIndex(index: number): void {
+    this.experiencesService.setIndex(index);
+  }
+
+  showExplanation() {
+    this.explanation = true;
+  }
+
+  hideExplanation() {
+    this.explanation = false;
   }
 }

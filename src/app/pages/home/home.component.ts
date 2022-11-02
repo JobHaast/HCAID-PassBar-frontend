@@ -8,7 +8,7 @@ import { FooterService } from 'src/app/components/footer/footer.service';
 })
 export class HomeComponent implements OnInit {
   constructor(private readonly footerService: FooterService) {
-    this.footerService.setFooterEnabled(true);
+    this.footerService.setFooterEnabled(false);
   }
 
   ngOnInit() {}

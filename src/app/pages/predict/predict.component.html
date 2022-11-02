@@ -7,325 +7,388 @@
       background-repeat: no-repeat;
     "
   ></div>
-  <div class="container mx-auto px-4 h-full">
+  <div class="container mx-auto px-4 h-full pt-10">
     <div class="flex content-center items-center justify-center h-full">
       <div class="w-full lg:w-7/12 px-4 fadeIn">
         <div
           class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0"
         >
-          <ng-container
-            *ngIf="prediction === undefined; then form; else result"
-          ></ng-container>
-          <ng-template #form>
-            <div class="rounded-t mb-0 px-6 py-6">
-              <div class="text-center mb-3">
-                <h6 class="text-gray-600 text-base font-bold">
-                  Predict whether you will pass the bar
-                </h6>
-              </div>
-              <hr class="mt-6 border-b-1 border-gray-400" />
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form [formGroup]="predictionForm" (submit)="makePrediction()">
-                <div class="grid grid-cols-2">
-                  <div class="mb-3 pr-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >Decile1<span class="text-orange-400 ml-1">*</span>
-                      <app-tooltip
-                        description="Your rank in your class in year 1 as a decile"
-                        class="float-right"
-                      ></app-tooltip></label
-                    ><input
-                      formControlName="decile1"
-                      min="1"
-                      max="10"
-                      type="number"
-                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="1-10"
-                      style="transition: all 0.15s ease 0s"
-                    />
-                    <app-error-display
-                      [control]="this.predictionForm.controls['decile1']"
-                    ></app-error-display>
-                  </div>
-                  <div class="mb-3 pl-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >Decile3<span class="text-orange-400 ml-1">*</span
-                      ><app-tooltip
-                        description="Your rank in your class in year 3 as a decile"
-                        class="float-right"
-                      ></app-tooltip></label
-                    ><input
-                      formControlName="decile3"
-                      min="1"
-                      max="10"
-                      type="number"
-                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="1-10"
-                      style="transition: all 0.15s ease 0s"
-                    />
-                    <app-error-display
-                      [control]="this.predictionForm.controls['decile3']"
-                    ></app-error-display>
-                  </div>
-                  <div class="mb-3 pr-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >lsat<span class="text-orange-400 ml-1">*</span
-                      ><app-tooltip
-                        description="Your LSAT score"
-                        class="float-right"
-                      ></app-tooltip></label
-                    ><input
-                      formControlName="lsat"
-                      min="120"
-                      max="180"
-                      type="number"
-                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="120-180"
-                      style="transition: all 0.15s ease 0s"
-                    />
-                    <app-error-display
-                      [control]="this.predictionForm.controls['lsat']"
-                    ></app-error-display>
-                  </div>
-                  <div class="mb-3 pl-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >ugpa<span class="text-orange-400 ml-1">*</span
-                      ><app-tooltip
-                        description="Your undergraduate GPA score"
-                        class="float-right"
-                      ></app-tooltip></label
-                    ><input
-                      formControlName="ugpa"
-                      min="0"
-                      max="4"
-                      type="number"
-                      class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
-                      placeholder="0.0-4.0"
-                      style="transition: all 0.15s ease 0s"
-                    />
-                    <app-error-display
-                      [control]="this.predictionForm.controls['ugpa']"
-                    ></app-error-display>
-                  </div>
-                  <div class="mb-3 pr-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >fulltime</label
-                    >
-                    <div class="flex items-start">
-                      <div class="flex h-5 items-center">
-                        <input
-                          formControlName="fulltime"
-                          id="comments"
-                          name="comments"
-                          type="checkbox"
-                          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                      </div>
-                      <div class="ml-3 text-sm">
-                        <p class="text-gray-500">
-                          Whether or not you have attended law school fulltime.
-                        </p>
-                      </div>
-                      <app-error-display
-                        [control]="this.predictionForm.controls['fulltime']"
-                      ></app-error-display>
-                    </div>
-                  </div>
-                  <div class="mb-3 pl-1">
-                    <label
-                      class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      for="grid-password"
-                      >grad</label
-                    >
-                    <div class="flex items-start">
-                      <div class="flex h-5 items-center">
-                        <input
-                          formControlName="grad"
-                          id="comments"
-                          name="comments"
-                          type="checkbox"
-                          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                      </div>
-                      <div class="ml-3 text-sm">
-                        <p class="text-gray-500">
-                          Whether or not you have graduated law school.
-                        </p>
-                      </div>
-                      <app-error-display
-                        [control]="this.predictionForm.controls['grad']"
-                      ></app-error-display>
-                    </div>
-                  </div>
+          <ng-container [ngSwitch]="true">
+            <ng-template
+              [ngSwitchCase]="prediction === undefined && explanation === false"
+            >
+              <div class="rounded-t mb-0 px-6 py-6">
+                <div class="text-center mb-3">
+                  <h6 class="text-gray-600 text-base font-bold">
+                    Predict whether you will pass the bar
+                  </h6>
                 </div>
-                <ng-container
-                  *ngIf="
-                    this.loading === false;
-                    then initialState;
-                    else showProcessing
-                  "
-                ></ng-container>
-                <div class="text-center mt-2">
-                  <ng-template #initialState>
-                    <button
-                      class="bg-gray-900 text-white active:bg-gray-700 disabled:bg-gray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                      type="submit"
-                      style="transition: all 0.15s ease 0s"
-                      [disabled]="this.predictionForm.invalid"
-                    >
-                      Predict
-                    </button>
-                  </ng-template>
-                  <ng-template #showProcessing
-                    ><button
-                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                      type="submit"
-                      style="transition: all 0.15s ease 0s"
-                      [disabled]="true"
-                    >
-                      <div
-                        class="flex items-center justify-center center gap-2"
+                <hr class="mt-6 border-b-1 border-gray-400" />
+              </div>
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <form [formGroup]="predictionForm" (submit)="makePrediction()">
+                  <div class="grid grid-cols-2">
+                    <div class="mb-3 pr-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >Decile1<span class="text-orange-400 ml-1">*</span>
+                        <app-tooltip
+                          description="Your rank in your class in year 1 as a decile"
+                          class="float-right"
+                        ></app-tooltip></label
+                      ><input
+                        formControlName="decile1"
+                        min="1"
+                        max="10"
+                        type="number"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="1-10"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                      <app-error-display
+                        [control]="this.predictionForm.controls['decile1']"
+                      ></app-error-display>
+                    </div>
+                    <div class="mb-3 pl-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >Decile3<span class="text-orange-400 ml-1">*</span
+                        ><app-tooltip
+                          description="Your rank in your class in year 3 as a decile"
+                          class="float-right"
+                        ></app-tooltip></label
+                      ><input
+                        formControlName="decile3"
+                        min="1"
+                        max="10"
+                        type="number"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="1-10"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                      <app-error-display
+                        [control]="this.predictionForm.controls['decile3']"
+                      ></app-error-display>
+                    </div>
+                    <div class="mb-3 pr-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >lsat<span class="text-orange-400 ml-1">*</span
+                        ><app-tooltip
+                          description="Your LSAT score"
+                          class="float-right"
+                        ></app-tooltip></label
+                      ><input
+                        formControlName="lsat"
+                        min="120"
+                        max="180"
+                        type="number"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="120-180"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                      <app-error-display
+                        [control]="this.predictionForm.controls['lsat']"
+                      ></app-error-display>
+                    </div>
+                    <div class="mb-3 pl-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >ugpa<span class="text-orange-400 ml-1">*</span
+                        ><app-tooltip
+                          description="Your undergraduate GPA score"
+                          class="float-right"
+                        ></app-tooltip></label
+                      ><input
+                        formControlName="ugpa"
+                        min="0"
+                        max="4"
+                        type="number"
+                        class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
+                        placeholder="0.0-4.0"
+                        style="transition: all 0.15s ease 0s"
+                      />
+                      <app-error-display
+                        [control]="this.predictionForm.controls['ugpa']"
+                      ></app-error-display>
+                    </div>
+                    <div class="mb-3 pr-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >fulltime</label
                       >
-                        <span
-                          class="h-6 w-6 block rounded-full border-4 border-t-cyan-400 animate-spin"
-                        ></span>
-                        Processing
+                      <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                          <input
+                            formControlName="fulltime"
+                            id="comments"
+                            name="comments"
+                            type="checkbox"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <p class="text-gray-500">
+                            Whether or not you have attended law school
+                            fulltime.
+                          </p>
+                        </div>
+                        <app-error-display
+                          [control]="this.predictionForm.controls['fulltime']"
+                        ></app-error-display>
                       </div>
-                    </button></ng-template
-                  >
+                    </div>
+                    <div class="mb-3 pl-1">
+                      <label
+                        class="block uppercase text-gray-700 text-xs font-bold mb-2"
+                        for="grid-password"
+                        >grad</label
+                      >
+                      <div class="flex items-start">
+                        <div class="flex h-5 items-center">
+                          <input
+                            formControlName="grad"
+                            id="comments"
+                            name="comments"
+                            type="checkbox"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          />
+                        </div>
+                        <div class="ml-3 text-sm">
+                          <p class="text-gray-500">
+                            Whether or not you have graduated law school.
+                          </p>
+                        </div>
+                        <app-error-display
+                          [control]="this.predictionForm.controls['grad']"
+                        ></app-error-display>
+                      </div>
+                    </div>
+                  </div>
+                  <ng-container
+                    *ngIf="
+                      this.loading === false;
+                      then initialState;
+                      else showProcessing
+                    "
+                  ></ng-container>
+                  <div class="text-center mt-2">
+                    <ng-template #initialState>
+                      <button
+                        class="bg-gray-900 text-white active:bg-gray-700 disabled:bg-gray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                        type="submit"
+                        style="transition: all 0.15s ease 0s"
+                        [disabled]="this.predictionForm.invalid"
+                      >
+                        Predict
+                      </button>
+                    </ng-template>
+                    <ng-template #showProcessing
+                      ><button
+                        class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                        type="submit"
+                        style="transition: all 0.15s ease 0s"
+                        [disabled]="true"
+                      >
+                        <div
+                          class="flex items-center justify-center center gap-2"
+                        >
+                          <span
+                            class="h-6 w-6 block rounded-full border-4 border-t-cyan-400 animate-spin"
+                          ></span>
+                          Processing
+                        </div>
+                      </button></ng-template
+                    >
+                  </div>
+                </form>
+              </div>
+            </ng-template>
+            <ng-template [ngSwitchCase]="prediction && explanation === false">
+              <div class="rounded-t mb-0 px-6 py-6">
+                <div class="text-center mb-3">
+                  <h6 class="text-gray-600 text-base font-bold">
+                    We believe that you have a
+                    {{ this.prediction?.chanceOfPassing | number: ".0-2" }}%
+                    chance of passing the bar!
+                  </h6>
                 </div>
-              </form>
-            </div>
-          </ng-template>
-          <ng-template #result>
-            <div class="rounded-t mb-0 px-6 py-6">
-              <div class="text-center mb-3">
-                <h6 class="text-gray-600 text-base font-bold">
-                  We believe that you have a
-                  {{ this.prediction?.chanceOfPassing | number: ".0-2" }}%
-                  chance of passing the bar!
-                </h6>
+                <hr class="mt-6 border-b-1 border-gray-400" />
               </div>
-              <hr class="mt-6 border-b-1 border-gray-400" />
-            </div>
-            <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <div class="pb-2" *ngIf="this.prediction!.chanceOfPassing <= 40">
-                <p>
-                  We recommend you to not take the bar test as your chance of
-                  passing is equal or lower than 40%. Bellow we explain how we
-                  got to this prediction. Note that this prediction is not 100%
-                  accurate and should therefore be taken with a grain of salt.
-                </p>
-              </div>
-              <div
-                class="pb-2"
-                *ngIf="
-                  this.prediction!.chanceOfPassing > 40 &&
-                  this.prediction!.chanceOfPassing <= 60
-                "
-              >
-                <p>
-                  We recommend you to take the bar test. You might not have
-                  scored the highest possible chance of passing the bar, but we
-                  still belive you can do it. You have scored between 40% and
-                  60%.
-                </p>
-              </div>
-              <div class="pb-2" *ngIf="this.prediction!.chanceOfPassing > 60">
-                <p>
-                  We highly recommend you to take the bar test! You have scored
-                  a chance of passing the bar higher than 60%. This is a pretty
-                  high score. Well done!
-                </p>
-              </div>
-              <div class="pb-2">
-                <img
-                  src="{{ 'data:image/jpg;base64,' + prediction?.['shap-img'] }}"
-                />
-              </div>
-              <div class="pb-2">
-                <p>
-                  The graph that is shown displays how we got to our score. The
-                  red areas in this graph represent the different inputs that
-                  positivly impact your chance of passing the bar. The blue
-                  areas in the graph represent the different inputs that
-                  negativly impact your chance of passing the bar. The size of
-                  each bar in this figure also represents how much each input
-                  weighs into the prediction.
-                </p>
-              </div>
-              <div class="text-center mt-6 grid grid-cols-2">
-                <div class="pr-1">
-                  <button
-                    class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                    style="transition: all 0.15s ease 0s"
-                    (click)="resetOutput()"
-                  >
-                    Make another prediction
-                  </button>
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <div
+                  class="pb-2"
+                  *ngIf="this.prediction!.chanceOfPassing <= 40"
+                >
+                  <p>
+                    We recommend you to not take the bar test as your chance of
+                    passing is equal or lower than 40%. Note that this
+                    prediction is not 100% accurate and should therefore be
+                    taken with a grain of salt. If you still want to attempt the
+                    bar test then we recommend you to study with
+                    <b
+                      ><a
+                        href="https://testmaxprep.com/bar-exam/mbe-question-bank"
+                        target="_blank"
+                        class="text-cyan-500"
+                        >these</a
+                      ></b
+                    >
+                    practice questions.
+                  </p>
+                  <br />
+                  <p>
+                    If you are curious as to how we got to this prediction feel
+                    free to click on the 'how did I get this result?' button, or
+                    click any of the other buttons.
+                  </p>
                 </div>
-                <div class="pl-1">
-                  <button
-                    class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                    style="transition: all 0.15s ease 0s"
-                    routerLink="/experiences"
-                  >
-                    Read about other people's experiences
-                  </button>
+                <div
+                  class="pb-2"
+                  *ngIf="
+                    this.prediction!.chanceOfPassing > 40 &&
+                    this.prediction!.chanceOfPassing <= 60
+                  "
+                >
+                  <p>
+                    We recommend you to take the bar test. You might not have
+                    scored the highest possible chance of passing the bar, but
+                    we still believe you can do it. You have scored between 40%
+                    and 60%. We also recommend you to study with
+                    <b
+                      ><a
+                        href="https://testmaxprep.com/bar-exam/mbe-question-bank"
+                        target="_blank"
+                        class="text-cyan-500"
+                        >these</a
+                      ></b
+                    >
+                    practice questions. You can also sign up for the bar test at
+                    <b>
+                      <a
+                        href="https://www.ncbex.org/exams/mpre/registration/"
+                        target="_blank"
+                        class="text-cyan-500"
+                        >this</a
+                      >
+                    </b>
+                    link.
+                  </p>
+                  <br />
+                  <p>
+                    Bellow are links to the explenation of your result, a new
+                    attempt at a prediction, an experience of someone with a
+                    similair score as you and a possibility for you to give us
+                    feedback.
+                  </p>
+                </div>
+                <div class="pb-2" *ngIf="this.prediction!.chanceOfPassing > 60">
+                  <p>
+                    We highly recommend you to take the bar test! You have
+                    scored a chance of passing the bar higher than 60%. This is
+                    a pretty high score. Well done! You can sign up for the bar
+                    test at
+                    <b>
+                      <a
+                        href="https://www.ncbex.org/exams/mpre/registration/"
+                        target="_blank"
+                        class="text-cyan-500"
+                        >this</a
+                      >
+                    </b>
+                    link.
+                  </p>
+                  <br />
+                  <p>
+                    You can also read about someone similair to you, give us
+                    feedback, make another prediction or look into the details
+                    of your prediction (buttons bellow).
+                  </p>
+                </div>
+                <div class="text-center mt-6 grid grid-cols-2">
+                  <div class="pr-1">
+                    <button
+                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      style="transition: all 0.15s ease 0s"
+                      (click)="showExplanation()"
+                    >
+                      How did i get this result?
+                    </button>
+                  </div>
+                  <div class="pl-1">
+                    <button
+                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      style="transition: all 0.15s ease 0s"
+                      (click)="resetOutput()"
+                    >
+                      Make another prediction
+                    </button>
+                  </div>
+                  <div class="pr-1">
+                    <button
+                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      style="transition: all 0.15s ease 0s"
+                      routerLink="/experiences"
+                      (click)="setIndex(this.personIndex)"
+                    >
+                      Read about someone similair to you
+                    </button>
+                  </div>
+                  <div class="pl-1">
+                    <button
+                      class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                      style="transition: all 0.15s ease 0s"
+                      routerLink="/feedback"
+                    >
+                      Give use feedback
+                    </button>
+                  </div>
                 </div>
               </div>
-              <button
-                class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                style="transition: all 0.15s ease 0s"
-                routerLink="/feedback"
-              >
-                Give us feedback
-              </button>
-            </div>
-          </ng-template>
+            </ng-template>
+            <ng-template ngSwitchDefault>
+              <div class="rounded-t mb-0 px-6 py-6">
+                <div class="text-center mb-3">
+                  <h6 class="text-gray-600 text-base font-bold">
+                    How did I get this result?
+                  </h6>
+                </div>
+                <hr class="mt-6 border-b-1 border-gray-400" />
+              </div>
+              <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                <div class="pb-2">
+                  <p>
+                    The graph that is shown displays how we got to your score.
+                    The red areas in this graph represent the different inputs
+                    that positivly impact your chance of passing the bar. The
+                    blue areas in the graph represent the different inputs that
+                    negativly impact your chance of passing the bar. The size of
+                    each bar in this figure also represents how much each input
+                    weighs into the prediction.
+                  </p>
+                </div>
+                <div class="pb-2">
+                  <img
+                    src="{{ 'data:image/jpg;base64,' + prediction?.['shap-img'] }}"
+                  />
+                </div>
+                <button
+                  class="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                  style="transition: all 0.15s ease 0s"
+                  (click)="this.hideExplanation()"
+                >
+                  Back to result
+                </button>
+              </div>
+            </ng-template>
+          </ng-container>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-  <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-
-  <div class="fixed inset-0 z-10 overflow-y-auto">
-    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-      <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-          <div class="sm:flex sm:items-start">
-            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v3.75m-9.303 3.376C1.83 19.126 2.914 21 4.645 21h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 4.88c-.866-1.501-3.032-1.501-3.898 0L2.697 17.626zM12 17.25h.007v.008H12v-.008z" />
-              </svg>
-            </div>
-            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-              <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Deactivate account</h3>
-              <div class="mt-2">
-                <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button type="button" class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm">Deactivate</button>
-          <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'src/app/components/footer/footer.service';
 
 @Component({
   selector: 'app-explanation',
@@ -20,7 +21,7 @@ export class ExplanationComponent implements OnInit {
     {
       header: 'How does this work?',
       description:
-        'Our application makes predictions based on historical data of american students who did or did not pass the bar. With this data we have created an AI that has analysed the data and is able to predict whether someone will pass the bar. It does this by looking at the data you provide and compares that data with the historical data of different students who have attempted the bar test. Our model works pretty good but is not perfect, therefore our predictions should be taken with a grain of salt. You are always free to do with your prediction as you please.',
+        "Our application makes predictions based on historical data of american students who did or did not pass the bar. This data is from the study <b><a href='http://www.seaphe.org/databases.php' target='_blank' class='text-cyan-500 hover:text-cyan-600'>'LSAC National Longitudinal Bar Passage Study'</a></b> conducted by Linda Wightman. The data of this study can be found <b><a href='https://www.kaggle.com/datasets/danofer/law-school-admissions-bar-passage' target='_blank' class='text-cyan-500 hover:text-cyan-600'>here</a></b>. With this data we have created an AI that has analysed the data and is able to predict whether someone will pass the bar. It does this by looking at the data you provide and compares that data with the historical data of different students who have attempted the bar test. Our model works pretty good but is not perfect, therefore our predictions should be taken with a grain of salt. You are always free to do with your prediction as you please.",
     },
     {
       header: 'How is my data used?',
@@ -31,7 +32,9 @@ export class ExplanationComponent implements OnInit {
 
   maxIndex: number = this.information.length;
 
-  constructor() {}
+  constructor(private readonly footerService: FooterService) {
+    this.footerService.setFooterEnabled(false);
+  }
 
   ngOnInit(): void {}
 
